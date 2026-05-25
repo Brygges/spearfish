@@ -2,7 +2,7 @@ process SRA_TOOLBOX {
     tag "$meta.id"
     label 'process_single'
 
-    publishDir = [
+    publishDir [
         path: "${params.outdir}/fastq",
         mode: "copy",
         pattern: '*.fastq',

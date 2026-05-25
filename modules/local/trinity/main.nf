@@ -7,7 +7,7 @@ process TRINITY {
         'oras://community.wave.seqera.io/library/salmon_trinity:65edd3573cdb65fa' :
         'community.wave.seqera.io/library/salmon_trinity:65edd3573cdb65fa' }"
 
-    publishDir = [
+    publishDir [
         [
             path: "${params.outdir}/trinity",
             mode: "copy",
@@ -44,7 +44,8 @@ process TRINITY {
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
 
-    def reads1 = [], reads2 = []
+    def reads1 = []
+    def reads2 = []
     meta.single_end ? reads1 = reads : reads.eachWithIndex{ v, ix  -> ( ix & 1 ? reads2 : reads1) << v }
 
     if (meta.single_end) {

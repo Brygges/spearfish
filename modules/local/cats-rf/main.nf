@@ -20,7 +20,8 @@ process CATSRF {
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
 
-    def reads1 = [], reads2 = []
+    def reads1 = []
+    def reads2 = []
     meta.single_end ? reads1 = reads : reads.eachWithIndex{ v, ix  -> ( ix & 1 ? reads2 : reads1) << v }
 
     if (meta.single_end) {
