@@ -1,0 +1,6 @@
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - bioconda::sortmerna=4.3.7
+  - bioconda::bbmap=39.81

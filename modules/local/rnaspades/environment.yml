@@ -1,0 +1,6 @@
+channels:
+  - bioconda
+  - conda-forge
+dependencies: 
+  - bioconda::spades=4.2.0
+  - bioconda::salmon=1.11.4
