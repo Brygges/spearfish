@@ -10,13 +10,41 @@
 
 ## Pipeline tools
 
-- [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+- [Falco](https://pmc.ncbi.nlm.nih.gov/articles/PMC7845152/)
 
-> Andrews, S. (2010). FastQC: A Quality Control Tool for High Throughput Sequence Data [Online].
+> Ade Sena Brandine, G., & Smith, A. D. (2019). Falco: high-speed FastQC emulation for quality control of sequencing data. F1000Research, 8, 1874. https://doi.org/10.12688/f1000research.21142.2.
+
+- [fastp](https://pmc.ncbi.nlm.nih.gov/articles/PMC6129281/)
+
+> Chen, S., Zhou, Y., Chen, Y., & Gu, J. (2018). fastp: an ultra-fast all-in-one FASTQ preprocessor. Bioinformatics (Oxford, England), 34(17), i884–i890. https://doi.org/10.1093/bioinformatics/bty560.
+
+- [SortMeRNA](https://academic.oup.com/bioinformatics/article/28/24/3211/246053)
+
+> Evguenia Kopylova, Laurent Noé, Hélène Touzet, SortMeRNA: fast and accurate filtering of ribosomal RNAs in metatranscriptomic data, Bioinformatics, Volume 28, Issue 24, December 2012, Pages 3211–3217, https://doi.org/10.1093/bioinformatics/bts611.
 
 - [MultiQC](https://pubmed.ncbi.nlm.nih.gov/27312411/)
 
 > Ewels P, Magnusson M, Lundin S, Käller M. MultiQC: summarize analysis results for multiple tools and samples in a single report. Bioinformatics. 2016 Oct 1;32(19):3047-8. doi: 10.1093/bioinformatics/btw354. Epub 2016 Jun 16. PubMed PMID: 27312411; PubMed Central PMCID: PMC5039924.
+
+- [Trinity](https://pubmed.ncbi.nlm.nih.gov/21572440/)
+
+> Grabherr MG, Haas BJ, Yassour M, Levin JZ, Thompson DA, Amit I, Adiconis X, Fan L, Raychowdhury R, Zeng Q, Chen Z, Mauceli E, Hacohen N, Gnirke A, Rhind N, di Palma F, Birren BW, Nusbaum C, Lindblad-Toh K, Friedman N, Regev A. Full-length transcriptome assembly from RNA-seq data without a reference genome. Nat Biotechnol. 2011 May 15;29(7):644-52. doi: 10.1038/nbt.1883. PubMed PMID: 21572440.
+
+- [rnaSPAdes](https://academic.oup.com/gigascience/article/8/9/giz100/5559527?)
+
+> Elena Bushmanova, Dmitry Antipov, Alla Lapidus, Andrey D Prjibelski, rnaSPAdes: a de novo transcriptome assembler and its application to RNA-Seq data, GigaScience, Volume 8, Issue 9, September 2019, giz100, https://doi.org/10.1093/gigascience/giz100.
+
+- [Salmon](https://pubmed.ncbi.nlm.nih.gov/28263959/)
+
+> Patro, R., Duggal, G., Love, M. I., Irizarry, R. A., & Kingsford, C. (2017). Salmon provides fast and bias-aware quantification of transcript expression. Nature Methods.
+
+- [BUSCO](https://academic.oup.com/nar/article/53/D1/D516/7899526)
+
+> Tegenfeldt F., Kuznetsov D., Manni M., Berkeley M., Zdobnov E.M., Kriventseva E.V. OrthoDB and BUSCO update: annotation of orthologs with wider sampling of genomes.  Nucleic Acids Research, Volume 53, Issue D1, 6 January 2025, Pages D516–D522, https://doi.org/10.1093/nar/gkae987.
+
+- [CATS-RF](https://www.nature.com/articles/s41467-026-72171-8)
+
+> Bodulić, K., Vlahoviček, K. Comprehensive assessment of transcriptome assembly quality using CATS. Nat Commun (2026). https://doi.org/10.1038/s41467-026-72171-8.
 
 ## Software packaging/containerisation tools
 

@@ -29,7 +29,7 @@ lint:
 
 template:
   org: nf-core
-  name: transcrit
+  name: spearfish
   description: A pipeline for de novo transcriptome assembly.
   author: Sune Brygge
   version: 1.0.0dev

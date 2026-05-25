@@ -1,9 +1,9 @@
 #!/usr/bin/env nextflow
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    nf-core/transcrit
+    nf-core/spearfish
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Github : https://github.com/nf-core/transcrit
+    Github : https://github.com/nf-core/spearfish
 ----------------------------------------------------------------------------------------
 */
 
@@ -13,24 +13,13 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { TRANSCRIT  } from './workflows/transcrit'
+include { SPEARFISH  } from './workflows/spearfish'
 include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_transcrit_pipeline'
 include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_transcrit_pipeline'
-include { getGenomeAttribute      } from './subworkflows/local/utils_nfcore_transcrit_pipeline'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    GENOME PARAMETER VALUES
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-*/
 
-// TODO nf-core: Remove this line if you don't need a FASTA file
-//   This is an example of how to use getGenomeAttribute() to fetch parameters
-//   from igenomes.config using `--genome`
-params.fasta = getGenomeAttribute('fasta')
-
-/*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     NAMED WORKFLOWS FOR PIPELINE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
@@ -38,7 +27,7 @@ params.fasta = getGenomeAttribute('fasta')
 //
 // WORKFLOW: Run main analysis pipeline depending on type of input
 //
-workflow NFCORE_TRANSCRIT {
+workflow NFCORE_SPEARFISH {
 
     take:
     samplesheet // channel: samplesheet read in from --input
@@ -48,11 +37,27 @@ workflow NFCORE_TRANSCRIT {
     //
     // WORKFLOW: Run pipeline
     //
-    TRANSCRIT (
+    SPEARFISH (
         samplesheet
     )
     emit:
-    multiqc_report = TRANSCRIT.out.multiqc_report // channel: /path/to/multiqc_report.html
+    fastq = SPEARFISH.out.fastq
+    falco = SPEARFISH.out.falcoreport
+    reads = SPEARFISH.out.reads
+    filter_reads = SPEARFISH.out.filter_reads
+    sortmerna_log = SPEARFISH.out.sortmerna_log
+    assembly = SPEARFISH.out.assembly
+    abundance = SPEARFISH.out.abundance
+    exnx = SPEARFISH.out.exnx
+    exnx_mqc = SPEARFISH.out.exnx_mqc
+    busco = SPEARFISH.out.busco
+    transcript_scores = SPEARFISH.out.transcript_scores
+    general_stats = SPEARFISH.out.general_stats
+    summary_stats = SPEARFISH.out.summary_stats
+    multiqc_report = SPEARFISH.out.multiqc_report
+    multiqc_data = SPEARFISH.out.multiqc_data
+    annotation = SPEARFISH.out.annotation
+    pep = SPEARFISH.out.pep
 }
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -71,7 +76,7 @@ workflow {
         params.validate_params,
         params.monochrome_logs,
         args,
-        params.outdir,
+        "${params.results_dir}/${params.outdir}",
         params.input,
         params.help,
         params.help_full,
@@ -81,7 +86,7 @@ workflow {
     //
     // WORKFLOW: Run main workflow
     //
-    NFCORE_TRANSCRIT (
+    NFCORE_SPEARFISH (
         PIPELINE_INITIALISATION.out.samplesheet
     )
     //
@@ -91,10 +96,10 @@ workflow {
         params.email,
         params.email_on_fail,
         params.plaintext_email,
-        params.outdir,
+        "${params.results_dir}/${params.outdir}",
         params.monochrome_logs,
         params.hook_url,
-        NFCORE_TRANSCRIT.out.multiqc_report
+        NFCORE_SPEARFISH.out.fastq
     )
 }
 

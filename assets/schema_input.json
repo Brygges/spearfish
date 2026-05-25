@@ -15,17 +15,15 @@
             },
             "fastq_1": {
                 "type": "string",
-                "format": "file-path",
-                "exists": true,
-                "pattern": "^([\\S\\s]*\\/)?[^\\s\\/]+\\.f(ast)?q\\.gz$",
-                "errorMessage": "FastQ file for reads 1 must be provided, cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+                "pattern": "^(SRR\\d+|([\\S\\s]*\\/)?[^\\s\\/]+\\.f(ast)?q(\\.gz)?)$",
+                "errorMessage": "FastQ file for reads 1 must be provided as either an SRA accession (SRR...) or a file path with extension '.fq' or '.fastq' (optionally gzipped)"
             },
             "fastq_2": {
                 "type": "string",
                 "format": "file-path",
                 "exists": true,
-                "pattern": "^([\\S\\s]*\\/)?[^\\s\\/]+\\.f(ast)?q\\.gz$",
-                "errorMessage": "FastQ file for reads 2 cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+                "pattern": "^([\\S\\s]*\\/)?[^\\s\\/]+\\.f(ast)?q(\\.gz)?$",
+                "errorMessage": "FastQ file for reads 2 cannot contain spaces and must have extension '.fq' or '.fastq' (optionally gzipped)"
             }
         },
         "required": ["sample", "fastq_1"]
