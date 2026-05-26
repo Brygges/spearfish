@@ -7,7 +7,6 @@ process FASTP {
         'oras://community.wave.seqera.io/library/fastp:1.3.2--916946baf992e235' :
         'community.wave.seqera.io/library/fastp:1.3.2--916946baf992e235' }"
     
-
     input:
     tuple val(meta), path(reads)
 
