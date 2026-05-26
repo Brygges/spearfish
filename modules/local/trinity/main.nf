@@ -7,26 +7,9 @@ process TRINITY {
         'oras://community.wave.seqera.io/library/salmon_trinity:65edd3573cdb65fa' :
         'community.wave.seqera.io/library/salmon_trinity:65edd3573cdb65fa' }"
 
-    publishDir = [
-        [
-            path: "${params.outdir}/trinity",
-            mode: "copy",
-            pattern: "*.Trinity.fasta",
-            overwrite: true
-        ],
-        [
-            path: "${params.outdir}/trinity",
-            mode: "copy",
-            pattern: "*_abundance.Trinity.fasta",
-            overwrite: true
-        ],
-        [
-            path: "${params.outdir}/trinity",
-            mode: "copy",
-            pattern: "abundance_estimate",
-            overwrite: true
-        ]
-    ]
+    publishDir "${params.outdir}/trinity", mode: "copy", pattern: "*.Trinity.fasta", overwrite: true
+    publishDir "${params.outdir}/trinity", mode: "copy", pattern: "*_abundance.Trinity.fasta", overwrite: true
+    publishDir "${params.outdir}/trinity", mode: "copy", pattern: "abundance_estimate", overwrite: true
 
     input:
     tuple val(meta), path(reads)

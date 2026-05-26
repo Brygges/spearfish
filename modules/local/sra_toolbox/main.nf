@@ -2,12 +2,7 @@ process SRA_TOOLBOX {
     tag "$meta.id"
     label 'process_single'
 
-    publishDir = [
-        path: "${params.outdir}/fastq",
-        mode: "copy",
-        pattern: '*.fastq',
-        overwrite: true
-    ]
+    publishDir "${params.outdir}/fastq", mode: "copy", pattern: '*.fastq', overwrite: true
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
