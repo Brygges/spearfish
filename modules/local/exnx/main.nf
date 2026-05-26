@@ -9,7 +9,7 @@ process EXNX {
     
     input:
     tuple val(meta), path(assembly)
-    tuple val(meta), path(quant)
+    path(quant)
 
     output:
     tuple val(meta), path("ExN50.stats"), emit: exn_stats

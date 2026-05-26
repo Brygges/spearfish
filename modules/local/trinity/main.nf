@@ -29,8 +29,12 @@ process TRINITY {
 
     def reads1 = []
     def reads2 = []
-    meta.single_end ? reads1 = reads : reads.eachWithIndex{ v, ix  -> ( ix & 1 ? reads2 : reads1) << v }
-
+    if (meta.single_end) {
+        reads1 = reads
+    } else {
+        reads.eachWithIndex { v, ix -> (ix & 1 ? reads2 : reads1) << v }
+    }
+    
     if (meta.single_end) {
         reads_args = "--single ${reads1.join(',')}"
     } else {

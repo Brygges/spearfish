@@ -15,9 +15,9 @@ process MULTIQC {
     path("*multiqc_report_data"), emit: multiqcdata
     path "versions.yml", emit: versions
 
+    script:
     def multiqc_config = params.multiqc_config.startsWith('/') ? params.multiqc_config : "${projectDir}/${params.multiqc_config}"
 
-    script:
     """
     multiqc --config ${multiqc_config} ${projectDir}/results/${params.outdir}
 

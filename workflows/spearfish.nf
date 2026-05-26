@@ -11,9 +11,9 @@ include { TRINITY } from '../modules/local/trinity/main'
 include { RNASPADES } from '../modules/local/rnaspades/main'
 include { EXNX } from '../modules/local/exnx/main'
 include { BUSCO } from '../modules/local/busco/main'
-include { CATSRF } from '../modules/local/cats-rf/main'
+include { CATSRF } from '../modules/local/catsrf/main'
 include { MULTIQC } from '../modules/local/multiqc/main'
-include { EGGNOGMAPPER } from '../modules/local/eggnog-mapper/main'
+include { EGGNOGMAPPER } from '../modules/local/eggnogmapper/main'
 include { TRANSDECODER } from '../modules/local/transdecoder/main'
 include { paramsSummaryMap       } from 'plugin/nf-schema'
 include { paramsSummaryMultiqc   } from '../subworkflows/nf-core/utils_nfcore_pipeline'
@@ -93,7 +93,7 @@ workflow SPEARFISH {
         ch_abundance = TRINITY.out.abundance
         ch_versions = ch_versions.mix(TRINITY.out.versions)
 
-        EXNX( TRINITY.out.assembly, TRINITY.out.abundance )
+        EXNX( TRINITY.out.assembly, TRINITY.out.abundance.map { meta, quant -> quant } )
         ch_exnx = EXNX.out.exn_stats
         ch_exnx_mqc = EXNX.out.exn_mqc
         ch_versions = ch_versions.mix(EXNX.out.versions)
@@ -104,7 +104,7 @@ workflow SPEARFISH {
         ch_abundance = RNASPADES.out.abundance
         ch_versions = ch_versions.mix(RNASPADES.out.versions)
 
-        EXNX( RNASPADES.out.assembly, RNASPADES.out.abundance )
+        EXNX( RNASPADES.out.assembly, RNASPADES.out.abundance.map { meta, quant -> quant } )
         ch_exnx = EXNX.out.exn_stats
         ch_exnx_mqc = EXNX.out.exn_mqc
         ch_versions = ch_versions.mix(EXNX.out.versions)
@@ -116,7 +116,7 @@ workflow SPEARFISH {
     // POST-ASSEMBLY EVALUATION //
     // ====================== //  
 
-    CATSRF( ch_assembly, SORTMERNA.out.reads )
+    CATSRF( ch_assembly, SORTMERNA.out.reads.map { meta, reads -> reads } )
     ch_scores = CATSRF.out.transcript_scores
     ch_stats = CATSRF.out.general_stats
     ch_summary = CATSRF.out.summary_stats
