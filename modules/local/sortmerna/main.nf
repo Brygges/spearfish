@@ -4,7 +4,7 @@ process SORTMERNA {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'oras://community.wave.seqera.io/library/bbmap_sortmerna:1a213ac348f4abac' :
+        'docker://community.wave.seqera.io/library/bbmap_sortmerna:1a213ac348f4abac' :
         'community.wave.seqera.io/library/bbmap_sortmerna:1a213ac348f4abac' }"
 
     input:

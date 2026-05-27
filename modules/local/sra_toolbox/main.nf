@@ -2,7 +2,7 @@ process SRA_TOOLBOX {
     tag "$meta.id"
     label 'process_single'
 
-    publishDir "${params.outdir}/fastq", mode: "copy", pattern: '*.fastq', overwrite: true
+    publishDir "${projectDir}/results/${params.outdir}/fastq", mode: "copy", pattern: '*.fastq'
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
@@ -20,11 +20,9 @@ process SRA_TOOLBOX {
     def args = task.ext.args ?: ''
 
     """
-    echo "=== DEBUG ==="
-
     prefetch \\
         --max-size 100G \\
-        ${accession_id}
+        ${accession_id} || true
     
     fasterq-dump \\
         --split-files \\

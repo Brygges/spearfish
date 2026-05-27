@@ -29,7 +29,7 @@ process FALCO {
 
         cat <<-END_VERSIONS > versions.yml
         "${task.process}":
-            falco: \$(falco --version 2>&1 | sed -e "s/falco //g")
+            falco: \$(falco --version 2>&1 | head -1 | sed -e "s/falco //g")
         END_VERSIONS
         """
     } else {
@@ -50,7 +50,7 @@ process FALCO {
 
         cat <<-END_VERSIONS > versions.yml
         "${task.process}":
-            falco: \$(falco --version 2>&1 | sed -e "s/falco //g")
+            falco: \$(falco --version 2>&1 | head -1 | sed -e "s/falco //g")
         END_VERSIONS
         """
     }

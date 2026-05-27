@@ -4,7 +4,7 @@ process TRINITY {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'oras://community.wave.seqera.io/library/salmon_trinity:65edd3573cdb65fa' :
+        'docker://community.wave.seqera.io/library/salmon_trinity:65edd3573cdb65fa' :
         'community.wave.seqera.io/library/salmon_trinity:65edd3573cdb65fa' }"
 
     publishDir "${params.outdir}/trinity", mode: "copy", pattern: "*.Trinity.fasta", overwrite: true
@@ -34,7 +34,7 @@ process TRINITY {
     } else {
         reads.eachWithIndex { v, ix -> (ix & 1 ? reads2 : reads1) << v }
     }
-    
+
     if (meta.single_end) {
         reads_args = "--single ${reads1.join(',')}"
     } else {
