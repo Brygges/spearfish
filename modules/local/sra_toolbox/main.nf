@@ -33,7 +33,7 @@ process SRA_TOOLBOX {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        sra-tools: \$(prefetch --version 2>&1 | sed 's/.* //')
+        sra-tools: \$(prefetch --version 2>&1 | grep -Eo '[0-9.]+' | head -n 1)
     END_VERSIONS
     """
 }

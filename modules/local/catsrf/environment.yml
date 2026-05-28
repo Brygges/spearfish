@@ -1,6 +1,6 @@
 channels:
-  - bioconda
   - conda-forge
+  - bioconda
 dependencies:
   - bioconda::cats-rf=1.0.4
   - bioconda::kallisto=0.50.1
