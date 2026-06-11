@@ -8,33 +8,30 @@
 
 ## Introduction
 
-**nf-core/spearfish** is a bioinformatics pipeline that can be used to perform *de novo* transcriptome assembly, with user-defined settings. It takes a samplesheet with FASTQ files or an SRA accession as input, to perform pre- and post-assembly quality control (QC), in addition to assembly. The results of which are concatenated into a singular extensive QC report.
+**SPEARFISH** is a bioinformatics pipeline that can be used to perform *de novo* transcriptome assembly, with user-defined settings. It takes a samplesheet with FASTQ files or an SRA accession as input, to perform pre- and post-assembly quality control (QC), in addition to assembly. The results of which are concatenated into a singular extensive QC report.
 
 
 <!-- TODO nf-core: Include a figure that guides the user through the major workflow steps. Many nf-core
      workflows use the "tube map" design for that. See https://nf-co.re/docs/guidelines/graphic_design/workflow_diagrams#examples for examples.   -->
 
+![](/pipelineDraw.png)
+
 
 ## Usage
 
 > [!NOTE]
-> If you are new to Nextflow and nf-core, please refer to [this page](https://nf-co.re/docs/usage/installation) on how to set-up Nextflow. Make sure to [test your setup](https://nf-co.re/docs/usage/introduction#how-to-run-a-pipeline) with `-profile test` before running the workflow on actual data.
-
-<!-- TODO nf-core: Describe the minimum required steps to execute the pipeline, e.g. how to prepare samplesheets.
-     Explain what rows and columns represent. For instance (please edit as appropriate):
+> If you are new to Nextflow and nf-core, please refer to [this page](https://nf-co.re/docs/usage/installation) on how to set-up Nextflow.
 
 First, prepare a samplesheet with your input data that looks as follows:
 
 `samplesheet.csv`:
 
 ```csv
-sample,fastq_1,fastq_2
-CONTROL_REP1,AEG588A1_S1_L002_R1_001.fastq.gz,AEG588A1_S1_L002_R2_001.fastq.gz
+sample,fastq_1
+TEST,SRR-X
 ```
 
 Each row represents a fastq file (single-end) or a pair of fastq files (paired end).
-
--->
 
 Now, you can run the pipeline using:
 
@@ -47,12 +44,9 @@ nextflow run nf-core/spearfish \
    --outdir <OUTDIR>
 ```
 
-> [!WARNING]
-> Please provide pipeline parameters via the CLI or Nextflow `-params-file` option. Custom config files including those provided by the `-c` Nextflow option can be used to provide any configuration _**except for parameters**_; see [docs](https://nf-co.re/docs/usage/getting_started/configuration#custom-configuration-files).
-
 ## Credits
 
-nf-core/spearfish was originally written by Sune Brygge.
+SPEARFISH was originally written by Sune Brygge, based on nf-core development guidelines.
 
 <!-- We thank the following people for their extensive assistance in the development of this pipeline: -->
 
